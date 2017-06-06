@@ -70,7 +70,7 @@ public class UserController {
 			return ResponseEntity.ok(response);
 		}
 	}
-	
+
 	@ApiOperation("Baja usuario")
 	@RequestMapping(method = RequestMethod.DELETE, value = "{id}")
 	public ResponseEntity<UserResponse> userDelete(@PathVariable(name = "id", required = true) Integer id) {
@@ -81,6 +81,12 @@ public class UserController {
 		} else {
 			return ResponseEntity.ok(response);
 		}
+	}
+
+	@ApiOperation("Baja usuario")
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<Iterable<UserResponse>> userList() {
+		return ResponseEntity.ok(userService.list());
 	}
 
 }

@@ -3,6 +3,7 @@ package com.github.mcnew.user.service;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +76,13 @@ public class UserServiceImpl implements UserService {
 			user.setActive(Boolean.FALSE);
 			return new UserResponse(userRepository.save(user));
 		}
+	}
+
+	@Override
+	public Iterable<UserResponse> list() {
+		ArrayList<UserResponse> users = new ArrayList<>();
+		userRepository.findAll().forEach(u -> users.add(new UserResponse(u)));
+		return users;
 	}
 
 	String hash(String original) {

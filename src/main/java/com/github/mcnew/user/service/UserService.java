@@ -15,4 +15,6 @@ public interface UserService {
 
 	UserResponse delete(Integer id);
 
+	Iterable<UserResponse> list();
+
 }
