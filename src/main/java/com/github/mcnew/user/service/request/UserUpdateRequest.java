@@ -1,13 +1,21 @@
 package com.github.mcnew.user.service.request;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel("User Update Request")
 public class UserUpdateRequest {
 
+	@ApiModelProperty("Estado del usuario")
 	private Boolean active;
 
+	@ApiModelProperty("Nombre de la persona")
 	private String name;
 
+	@ApiModelProperty("Primer apellido de la persona")
 	private String surname;
 
+	@ApiModelProperty("Segundo apellido de la persona")
 	private String secondSurname;
 
 	/**

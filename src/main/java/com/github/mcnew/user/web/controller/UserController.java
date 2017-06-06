@@ -1,11 +1,14 @@
 package com.github.mcnew.user.web.controller;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,9 +38,9 @@ public class UserController {
 		this.userService = userService;
 	}
 
-	@ApiOperation("Crea un usuario")
-	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<UserResponse> userCreate(@RequestBody UserCreateRequest request) {
+	@ApiOperation(value = "Crea un usuario", code = HttpServletResponse.SC_CREATED)
+	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<UserResponse> userCreate(@Validated @RequestBody UserCreateRequest request) {
 		UserCreateResponse user = userService.save(request);
 		if (user.isAlreadyExists()) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body(user);
@@ -46,8 +49,8 @@ public class UserController {
 		}
 	}
 
-	@ApiOperation("Actualiza un usuario")
-	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, value = "{id}")
+	@ApiOperation(value = "Actualiza un usuario", code = HttpServletResponse.SC_ACCEPTED)
+	@RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, value = "{id}")
 	public ResponseEntity<UserResponse> userUpdate(@PathVariable(name = "id", required = true) Integer id,
 			@RequestBody UserUpdateRequest request) {
 		LOGGER.debug("id a actualizar: {}", id);
@@ -59,8 +62,8 @@ public class UserController {
 		}
 	}
 
-	@ApiOperation("Informacion del usuario")
-	@RequestMapping(method = RequestMethod.GET, value = "{id}")
+	@ApiOperation(value = "Informacion del usuario", code = HttpServletResponse.SC_OK)
+	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, value = "{id}")
 	public ResponseEntity<UserResponse> userDetail(@PathVariable(name = "id", required = true) Integer id) {
 		LOGGER.debug("id a mostrar: {}", id);
 		UserResponse response = userService.find(id);
@@ -71,8 +74,8 @@ public class UserController {
 		}
 	}
 
-	@ApiOperation("Baja usuario")
-	@RequestMapping(method = RequestMethod.DELETE, value = "{id}")
+	@ApiOperation(value = "Baja usuario", code = HttpServletResponse.SC_OK)
+	@RequestMapping(method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE, value = "{id}")
 	public ResponseEntity<UserResponse> userDelete(@PathVariable(name = "id", required = true) Integer id) {
 		LOGGER.debug("id a dar de baja: {}", id);
 		UserResponse response = userService.delete(id);
@@ -83,8 +86,8 @@ public class UserController {
 		}
 	}
 
-	@ApiOperation("Baja usuario")
-	@RequestMapping(method = RequestMethod.GET)
+	@ApiOperation(value = "Listado usuarios", code = HttpServletResponse.SC_OK)
+	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Iterable<UserResponse>> userList() {
 		return ResponseEntity.ok(userService.list());
 	}

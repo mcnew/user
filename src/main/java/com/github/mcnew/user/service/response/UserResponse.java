@@ -2,20 +2,31 @@ package com.github.mcnew.user.service.response;
 
 import com.github.mcnew.user.model.User;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel("User Response")
 public class UserResponse {
 
+	@ApiModelProperty("El id de base de datos")
 	private Integer id;
 
+	@ApiModelProperty("Estado del usuario")
 	private Boolean active;
 
+	@ApiModelProperty("El nombre del usuario")
 	private String username;
 
+	@ApiModelProperty("La contrasena")
 	private String password;
 
+	@ApiModelProperty("El nombre de la persona")
 	private String name;
 
+	@ApiModelProperty("El primer apellido")
 	private String surname;
 
+	@ApiModelProperty("El segundo apellido")
 	private String secondSurname;
 
 	public UserResponse(User user) {
