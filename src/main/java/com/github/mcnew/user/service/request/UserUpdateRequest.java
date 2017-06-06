@@ -1,10 +1,8 @@
-package com.github.mcnew.user.service;
+package com.github.mcnew.user.service.request;
 
-public class UserRequest {
+public class UserUpdateRequest {
 
-	private String username;
-
-	private String password;
+	private Boolean active;
 
 	private String name;
 
@@ -13,33 +11,18 @@ public class UserRequest {
 	private String secondSurname;
 
 	/**
-	 * @return the username
+	 * @return the active
 	 */
-	public String getUsername() {
-		return username;
+	public Boolean getActive() {
+		return active;
 	}
 
 	/**
-	 * @param username
-	 *            the username to set
+	 * @param active
+	 *            the active to set
 	 */
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	/**
-	 * @return the password
-	 */
-	public String getPassword() {
-		return password;
-	}
-
-	/**
-	 * @param password
-	 *            the password to set
-	 */
-	public void setPassword(String password) {
-		this.password = password;
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 
 	/**

@@ -10,6 +10,10 @@ import org.springframework.stereotype.Service;
 
 import com.github.mcnew.user.model.User;
 import com.github.mcnew.user.repository.UserRepository;
+import com.github.mcnew.user.service.request.UserCreateRequest;
+import com.github.mcnew.user.service.request.UserUpdateRequest;
+import com.github.mcnew.user.service.response.UserCreateResponse;
+import com.github.mcnew.user.service.response.UserResponse;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -22,7 +26,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserResponse save(UserRequest request) {
+	public UserCreateResponse save(UserCreateRequest request) {
 		User user = userRepository.findByUsername(request.getUsername());
 		if (user == null) {
 			user = new User();
@@ -32,9 +36,44 @@ public class UserServiceImpl implements UserService {
 			user.setName(request.getName());
 			user.setSurname(request.getSurname());
 			user.setSecondSurname(request.getSecondSurname());
-			return new UserResponse(false, userRepository.save(user));
+			return new UserCreateResponse(false, userRepository.save(user));
 		} else {
-			return new UserResponse(true, user);
+			return new UserCreateResponse(true, user);
+		}
+	}
+
+	@Override
+	public UserResponse update(Integer id, UserUpdateRequest request) {
+		User user = userRepository.findOne(id);
+		if (user == null) {
+			return null;
+		} else {
+			user.setName(request.getName());
+			user.setSurname(request.getSurname());
+			user.setSecondSurname(request.getSecondSurname());
+			user.setActive(request.getActive());
+			return new UserResponse(userRepository.save(user));
+		}
+	}
+
+	@Override
+	public UserResponse find(Integer id) {
+		User user = userRepository.findOne(id);
+		if (user == null) {
+			return null;
+		} else {
+			return new UserResponse(user);
+		}
+	}
+
+	@Override
+	public UserResponse delete(Integer id) {
+		User user = userRepository.findOne(id);
+		if (user == null) {
+			return null;
+		} else {
+			user.setActive(Boolean.FALSE);
+			return new UserResponse(userRepository.save(user));
 		}
 	}
 

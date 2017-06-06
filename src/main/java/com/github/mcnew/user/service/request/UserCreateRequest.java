@@ -1,16 +1,6 @@
-package com.github.mcnew.user.service;
+package com.github.mcnew.user.service.request;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.github.mcnew.user.model.User;
-
-public class UserResponse {
-
-	@JsonIgnore
-	private boolean alreadyExists;
-
-	private Integer id;
-
-	private Boolean active;
+public class UserCreateRequest {
 
 	private String username;
 
@@ -21,62 +11,6 @@ public class UserResponse {
 	private String surname;
 
 	private String secondSurname;
-
-	public UserResponse(boolean alreadyExists, User user) {
-		this.alreadyExists = alreadyExists;
-		id = user.getId();
-		active = user.getActive();
-		username = user.getUsername();
-		password = "****";
-		name = user.getName();
-		surname = user.getSurname();
-		secondSurname = user.getSecondSurname();
-	}
-
-	/**
-	 * @return the alreadyExists
-	 */
-	public boolean isAlreadyExists() {
-		return alreadyExists;
-	}
-
-	/**
-	 * @param alreadyExists
-	 *            the alreadyExists to set
-	 */
-	public void setAlreadyExists(boolean alreadyExists) {
-		this.alreadyExists = alreadyExists;
-	}
-
-	/**
-	 * @return the id
-	 */
-	public Integer getId() {
-		return id;
-	}
-
-	/**
-	 * @param id
-	 *            the id to set
-	 */
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	/**
-	 * @return the active
-	 */
-	public Boolean getActive() {
-		return active;
-	}
-
-	/**
-	 * @param active
-	 *            the active to set
-	 */
-	public void setActive(Boolean active) {
-		this.active = active;
-	}
 
 	/**
 	 * @return the username
