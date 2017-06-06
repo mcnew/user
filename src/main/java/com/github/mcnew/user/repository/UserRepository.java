@@ -7,5 +7,7 @@ import com.github.mcnew.user.model.User;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Integer> {
+	
+	User findByUsername(String name);
 
 }

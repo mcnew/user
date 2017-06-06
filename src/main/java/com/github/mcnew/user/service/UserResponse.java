@@ -1,21 +1,17 @@
-package com.github.mcnew.user.model;
+package com.github.mcnew.user.service;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.github.mcnew.user.model.User;
 
-@Entity(name = "user")
-public class User {
+public class UserResponse {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonIgnore
+	private boolean alreadyExists;
+
 	private Integer id;
 
 	private Boolean active;
 
-	@Column(unique = true)
 	private String username;
 
 	private String password;
@@ -24,8 +20,33 @@ public class User {
 
 	private String surname;
 
-	@Column(name = "second_surname")
 	private String secondSurname;
+
+	public UserResponse(boolean alreadyExists, User user) {
+		this.alreadyExists = alreadyExists;
+		id = user.getId();
+		active = user.getActive();
+		username = user.getUsername();
+		password = "****";
+		name = user.getName();
+		surname = user.getSurname();
+		secondSurname = user.getSecondSurname();
+	}
+
+	/**
+	 * @return the alreadyExists
+	 */
+	public boolean isAlreadyExists() {
+		return alreadyExists;
+	}
+
+	/**
+	 * @param alreadyExists
+	 *            the alreadyExists to set
+	 */
+	public void setAlreadyExists(boolean alreadyExists) {
+		this.alreadyExists = alreadyExists;
+	}
 
 	/**
 	 * @return the id

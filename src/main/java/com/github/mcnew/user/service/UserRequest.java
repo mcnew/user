@@ -1,21 +1,7 @@
-package com.github.mcnew.user.model;
+package com.github.mcnew.user.service;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+public class UserRequest {
 
-@Entity(name = "user")
-public class User {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-
-	private Boolean active;
-
-	@Column(unique = true)
 	private String username;
 
 	private String password;
@@ -24,38 +10,7 @@ public class User {
 
 	private String surname;
 
-	@Column(name = "second_surname")
 	private String secondSurname;
-
-	/**
-	 * @return the id
-	 */
-	public Integer getId() {
-		return id;
-	}
-
-	/**
-	 * @param id
-	 *            the id to set
-	 */
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	/**
-	 * @return the active
-	 */
-	public Boolean getActive() {
-		return active;
-	}
-
-	/**
-	 * @param active
-	 *            the active to set
-	 */
-	public void setActive(Boolean active) {
-		this.active = active;
-	}
 
 	/**
 	 * @return the username

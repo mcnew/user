@@ -1,4 +1,4 @@
-package com.github.mcnew.user.web;
+package com.github.mcnew.user;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
