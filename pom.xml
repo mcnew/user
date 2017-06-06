@@ -3,10 +3,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.mcnew.user</groupId>
-	<artifactId>userPOM</artifactId>
-	<version>2.3.4-SNAPSHOT</version>
+	<artifactId>user</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>dynamicPOM</name>
 	<properties>
 		<project.build.sourceEncoding>US-ASCII</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -184,5 +183,6 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<name>user</name>
 </project>
 
