@@ -3,6 +3,9 @@ package com.github.mcnew.user.service.response;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.mcnew.user.model.User;
 
+import io.swagger.annotations.ApiModel;
+
+@ApiModel("User Creation Response")
 public class UserCreateResponse extends UserResponse {
 
 	@JsonIgnore

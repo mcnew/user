@@ -1,15 +1,30 @@
 package com.github.mcnew.user.service.request;
 
+import javax.validation.constraints.NotNull;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel("User Creation Request")
 public class UserCreateRequest {
 
+	@NotNull
+	@ApiModelProperty(notes = "El nombre de usuario", required = true)
 	private String username;
 
+	@NotNull
+	@ApiModelProperty(notes = "La clave", required = true)
 	private String password;
 
+	@NotNull
+	@ApiModelProperty(notes = "El nombre de la persona", required = true)
 	private String name;
 
+	@NotNull
+	@ApiModelProperty(notes = "El primer apellido", required = true)
 	private String surname;
 
+	@ApiModelProperty(notes = "El segundo apellido", required = false)
 	private String secondSurname;
 
 	/**
