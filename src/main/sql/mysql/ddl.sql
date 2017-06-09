@@ -14,6 +14,7 @@ CREATE UNIQUE INDEX ndx_user_username ON user(username);
 
 CREATE TABLE password (
 	id INTEGER NOT NULL AUTO_INCREMENT,
+	active BOOLEAN NOT NULL,
 	user_id INTEGER NOT NULL,
 	old VARCHAR(32) NOT NULL,
 	creation TIMESTAMP NOT NULL,
@@ -21,4 +22,4 @@ CREATE TABLE password (
 	FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
-CREATE UNIQUE INDEX ndx_password_alt ON password(old);
+CREATE INDEX ndx_password_alt ON password(old);
