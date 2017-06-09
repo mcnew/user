@@ -1,10 +1,6 @@
 package com.github.mcnew.user.service;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Base64;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +17,12 @@ public class UserServiceImpl implements UserService {
 
 	private final UserRepository userRepository;
 
+	private final UtilityService utilityService;
+
 	@Autowired
-	public UserServiceImpl(UserRepository userRepository) {
+	public UserServiceImpl(UserRepository userRepository, UtilityService utilityService) {
 		this.userRepository = userRepository;
+		this.utilityService = utilityService;
 	}
 
 	@Override
@@ -33,7 +32,7 @@ public class UserServiceImpl implements UserService {
 			user = new User();
 			user.setActive(Boolean.TRUE);
 			user.setUsername(request.getUsername());
-			user.setPassword(hash(request.getPassword()));
+			user.setPassword(utilityService.hash(request.getPassword()));
 			user.setName(request.getName());
 			user.setSurname(request.getSurname());
 			user.setSecondSurname(request.getSecondSurname());
@@ -52,7 +51,6 @@ public class UserServiceImpl implements UserService {
 			user.setName(request.getName());
 			user.setSurname(request.getSurname());
 			user.setSecondSurname(request.getSecondSurname());
-			user.setActive(request.getActive());
 			return new UserResponse(userRepository.save(user));
 		}
 	}
@@ -83,17 +81,6 @@ public class UserServiceImpl implements UserService {
 		ArrayList<UserResponse> users = new ArrayList<>();
 		userRepository.findAll().forEach(u -> users.add(new UserResponse(u)));
 		return users;
-	}
-
-	String hash(String original) {
-		try {
-			return new String(
-					Base64.getEncoder()
-							.encode(MessageDigest.getInstance("MD5").digest(original.getBytes(StandardCharsets.UTF_8))),
-					StandardCharsets.US_ASCII);
-		} catch (NoSuchAlgorithmException e) {
-			throw new IllegalArgumentException(e);
-		}
 	}
 
 }
