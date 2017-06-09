@@ -52,7 +52,6 @@ public class UserServiceImpl implements UserService {
 			user.setName(request.getName());
 			user.setSurname(request.getSurname());
 			user.setSecondSurname(request.getSecondSurname());
-			user.setActive(request.getActive());
 			return new UserResponse(userRepository.save(user));
 		}
 	}
