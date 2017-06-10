@@ -17,7 +17,7 @@ public class SwaggerConfig {
 
 	@Bean
 	public Docket api() {
-		ApiInfo apiInfo = new ApiInfo("User Example Rest API", "User Management Res API", "API TOS", "Terms of service",
+		ApiInfo apiInfo = new ApiInfo("User Example Rest API", "User Management Rest API", "1.1", "Terms of service",
 				new Contact("mcnew", "https://github.com/mcnew/user", "ix552-github@yahoo.com"), "Apache License 2.0",
 				"https://www.apache.org/licenses/LICENSE-2.0");
 		return new Docket(DocumentationType.SWAGGER_2).select()
