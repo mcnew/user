@@ -18,7 +18,7 @@ import com.github.mcnew.user.service.response.UserResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api(value = "Administracion usuarios")
+@Api(value = "Administracion de claves")
 @RestController
 @RequestMapping("password")
 public class PasswordController {
@@ -30,7 +30,7 @@ public class PasswordController {
 		this.passwordService = passwordService;
 	}
 
-	@ApiOperation(value = "Cambio de clave", code = HttpServletResponse.SC_OK)
+	@ApiOperation(value = "Cambio de clave", code = HttpServletResponse.SC_OK, notes = "Cambia la clave del usuario (Validando las reglas)")
 	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, value = "{id}")
 	public ResponseEntity<UserResponse> changePassword(@PathVariable("id") Integer id,
 			@RequestBody ChangePasswordRequest request) {
