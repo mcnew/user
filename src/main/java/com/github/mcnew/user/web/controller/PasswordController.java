@@ -18,7 +18,7 @@ import com.github.mcnew.user.service.response.UserResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api(value = "Administracion usuarios")
+@Api(value = "Administracion de claves")
 @RestController
 @RequestMapping("password")
 public class PasswordController {
